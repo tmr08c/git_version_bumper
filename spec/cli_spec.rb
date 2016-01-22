@@ -1,29 +1,45 @@
+require 'versionify'
 require 'spec_helper'
-require 'debugger'
 
-describe 'bundle executable' do
-  context 'when the directory is a repo' do
-    before do
-      FileUtils.mkdir_p('/tmp/testRepo')
-      FileUtils.chdir('/tmp/testRepo')
-      %x(git init)
+describe Versionify::CLI do
+  describe '#run' do
+    context "when the directroy isn't a repositroy" do
+      subject { described_class.new }
+
+      before do
+        FileUtils.chdir('/tmp')
+      end
+
+      it 'should return an error exit status' do
+        expect(subject.run).to eq 1
+      end
+
+      it 'give an error message' do
+        expect { subject.run }.to output(/repository/).to_stderr
+      end
+
+      after do
+        FileUtils.chdir(File.realpath("#{__FILE__}/.."))
+      end
     end
 
-    it 'should have a successful exit status' do
-      versionify 'bump'
+    context 'when the repo is a repository' do
+      subject { described_class.new }
 
-      expect($?.exitstatus).to be_zero
-    end
+      before do
+        path = '/tmp/testRepo'
+        FileUtils.mkdir_p(path)
+        FileUtils.chdir(path)
+        %x(git init)
+      end
 
-    after do
-      FileUtils.rm_rf('/tmp/testRepo/')
-      FileUtils.chdir(File.realpath("#{__FILE__}/.."))
+      it 'should return a successful exit status' do
+        expect(subject.run).to eq 0
+      end
+
+      after do
+        FileUtils.chdir(File.realpath("#{__FILE__}/.."))
+      end
     end
   end
-end
-
-def versionify(command)
-  path = File.realpath("#{__FILE__}/../../bin")
-
-  %x(#{path}/versionify #{command})
 end

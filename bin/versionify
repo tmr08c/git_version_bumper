@@ -6,4 +6,6 @@ $LOAD_PATH.unshift(File.dirname(File.realpath(__FILE__)) + '/../lib')
 
 require 'versionify'
 
-exit 0
+exit_status = Versionify::CLI.new.run
+
+exit exit_status
