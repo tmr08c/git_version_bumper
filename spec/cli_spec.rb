@@ -3,7 +3,7 @@ require 'spec_helper'
 
 describe Versionify::CLI do
   describe '#run' do
-    context "when the directroy isn't a repositroy" do
+    context "when the directory isn't a repositroy" do
       subject { described_class.new }
 
       before do
@@ -23,7 +23,7 @@ describe Versionify::CLI do
       end
     end
 
-    context 'when the repo is a repository' do
+    context 'when the directory is a repository' do
       subject { described_class.new }
 
       before do
