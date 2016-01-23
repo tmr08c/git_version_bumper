@@ -2,7 +2,45 @@ require 'versionify'
 require 'spec_helper'
 
 describe Versionify::CLI do
-  describe '#run' do
+  describe '#bump' do
+    context 'when a type is not given' do
+      subject { described_class.new }
+
+      it 'should error' do
+        expect{ subject.bump }.to raise_error(ArgumentError)
+      end
+    end
+
+    context 'when a type is given' do
+      context 'when the type is not a valid type' do
+        it 'should return an error exit status' do
+          expect(subject.bump('foo')).to eq 1
+        end
+
+        it 'should print the valid options' do
+          expect { subject.bump('foo') }.to output(/MAJOR/).to_stderr
+          expect { subject.bump('foo') }.to output(/MINOR/).to_stderr
+          expect { subject.bump('foo') }.to output(/PATCH/).to_stderr
+        end
+      end
+
+      context 'when the type is valid' do
+        context 'when the type is MAJOR' do
+          let(:type) { 'MAJOR' }
+
+          it 'should user a MajorVersionBumper' do
+            expect(Versionify::VersionBumper::MajorVersionBumper).to receive(:bump)
+          end
+        end
+
+        context 'when the type is MINOR' do
+        end
+
+        context 'when the type is PATCH' do
+        end
+      end
+    end
+
     context "when the directory isn't a repositroy" do
       subject { described_class.new }
 
@@ -11,11 +49,11 @@ describe Versionify::CLI do
       end
 
       it 'should return an error exit status' do
-        expect(subject.run).to eq 1
+        expect(subject.bump('MAJOR')).to eq 1
       end
 
       it 'give an error message' do
-        expect { subject.run }.to output(/repository/).to_stderr
+        expect { subject.bump('MAJOR') }.to output(/repository/).to_stderr
       end
 
       after do
@@ -34,7 +72,7 @@ describe Versionify::CLI do
       end
 
       it 'should return a successful exit status' do
-        expect(subject.run).to eq 0
+        expect(subject.bump('MAJOR')).to eq 0
       end
 
       after do

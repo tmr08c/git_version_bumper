@@ -1,11 +1,7 @@
 #!/usr/bin/env ruby
 # encoding: utf-8
 # frozen_string_literal: true
-
 $LOAD_PATH.unshift(File.dirname(File.realpath(__FILE__)) + '/../lib')
-
 require 'versionify'
 
-exit_status = Versionify::CLI.new.run
-
-exit exit_status
+exit Versionify::CLI.start(ARGV)
