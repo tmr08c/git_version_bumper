@@ -27,9 +27,16 @@ describe Versionify::CLI do
       context 'when the type is valid' do
         context 'when the type is MAJOR' do
           let(:type) { 'MAJOR' }
+          let(:bumper) { instance_double(Versionify::VersionBumper::MajorVersionBumper, bump: true) }
 
           it 'should user a MajorVersionBumper' do
-            expect(Versionify::VersionBumper::MajorVersionBumper).to receive(:bump)
+            expect(Versionify::VersionBumper::MajorVersionBumper)
+              .to receive(:new)
+              .with(FileUtils.pwd)
+              .and_return(bumper)
+            expect(bumper).to receive(:bump)
+
+            subject.bump(type)
           end
         end
 
@@ -63,6 +70,7 @@ describe Versionify::CLI do
 
     context 'when the directory is a repository' do
       subject { described_class.new }
+      let(:bumper) { double('bumper', bump: true) }
 
       before do
         path = '/tmp/testRepo'
@@ -72,6 +80,8 @@ describe Versionify::CLI do
       end
 
       it 'should return a successful exit status' do
+        expect(subject).to receive(:bumper_for).with('MAJOR').and_return(bumper)
+
         expect(subject.bump('MAJOR')).to eq 0
       end
 
