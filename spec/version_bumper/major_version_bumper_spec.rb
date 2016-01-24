@@ -39,6 +39,25 @@ describe Versionify::VersionBumper::MajorVersionBumper do
       end
     end
   end
+
+  context 'when there are existing tags' do
+    let(:repo_path) { '/tmp/tagRepo' }
+
+    subject { described_class.new(repo_path) }
+
+    it 'update the version to the next major version' do
+      with_repo(repo_path) do
+        # create an existing tag in the repo
+        `git commit --allow-empty -m 'commit'`
+        `git tag 'v2.3.4'`
+
+        subject.bump
+
+        tag_list = `git tag -l`
+        expect(tag_list).to match(/v3.0.0/)
+      end
+    end
+  end
 end
 
 def with_repo(path = 'tmp/testRepo')
