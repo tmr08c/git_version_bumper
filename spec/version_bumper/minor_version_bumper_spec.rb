@@ -1,8 +1,8 @@
-require 'versionify/version_bumper/major_version_bumper'
 require 'spec_helper'
+require 'versionify/version_bumper/minor_version_bumper'
 
-describe Versionify::VersionBumper::MajorVersionBumper do
-  describe '.bump' do
+describe Versionify::VersionBumper::MinorVersionBumper do
+  describe '#bump' do
     describe 'commit message' do
       let(:repo_path) { '/tmp/repo' }
 
@@ -26,7 +26,7 @@ describe Versionify::VersionBumper::MajorVersionBumper do
 
       subject { described_class.new(repo_path) }
 
-      it 'should create a v1.0.0 tag' do
+      it 'should create a v0.1.0 tag' do
         with_repo(repo_path) do
           tag_list = `git tag -l`
           expect(tag_list).to be_empty
@@ -34,27 +34,26 @@ describe Versionify::VersionBumper::MajorVersionBumper do
           subject.bump
 
           tag_list = `git tag -l`
-          expect(tag_list).to match(/v1.0.0/)
+          expect(tag_list).to match(/v0.1.0/)
         end
       end
-    end
-  end
 
-  context 'when there are existing tags' do
-    let(:repo_path) { '/tmp/tagRepo' }
+      context 'when there are existing tags' do
+        let(:repo_path) { '/tmp/taggedRepo' }
 
-    subject { described_class.new(repo_path) }
+        subject { described_class.new(repo_path) }
 
-    it 'update the version to the next major version' do
-      with_repo(repo_path) do
-        # create an existing tag in the repo
-        `git commit --allow-empty -m 'commit'`
-        `git tag 'v2.3.4'`
+        it 'should increase the minor version tag' do
+          with_repo(repo_path) do
+            `git commit --allow-empty -m 'commit'`
+            `git tag 'v1.2.3'`
 
-        subject.bump
+            subject.bump
 
-        tag_list = `git tag -l`
-        expect(tag_list).to match(/v3.0.0/)
+            tag_list = `git tag -l`
+            expect(tag_list).to match(/v1.3.0/)
+          end
+        end
       end
     end
   end

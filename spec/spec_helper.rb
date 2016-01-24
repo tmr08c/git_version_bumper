@@ -93,4 +93,15 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+
+  def with_repo(path = 'tmp/testRepo')
+    FileUtils.mkdir_p(path)
+    FileUtils.chdir(path)
+    `git init`
+
+    yield
+  ensure
+    FileUtils.rm_rf(path)
+    FileUtils.chdir(File.realpath("#{__FILE__}/.."))
+  end
 end

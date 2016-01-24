@@ -1,5 +1,4 @@
 require 'thor'
-require 'debugger'
 
 module Versionify
   class NotRepositoryError < StandardError; end
@@ -35,8 +34,14 @@ module Versionify
     private
 
     def bumper_for(version_type)
-      if VALID_BUMP_TYPES.include?(version_type.upcase)
-        Versionify::VersionBumper::MajorVersionBumper.new(FileUtils.pwd)
+      type = version_type.upcase
+      if VALID_BUMP_TYPES.include?(type)
+        case type
+        when 'MAJOR'
+          Versionify::VersionBumper::MajorVersionBumper.new(FileUtils.pwd)
+        when 'MINOR'
+          Versionify::VersionBumper::MinorVersionBumper.new(FileUtils.pwd)
+        end
       else
         raise InvalidVersionBumpType
       end

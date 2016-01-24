@@ -25,6 +25,23 @@ describe Versionify::CLI do
       end
 
       context 'when the type is valid' do
+        context 'when the tpye is MINOR' do
+          let(:type) { 'MINOR' }
+          let(:bumper) do
+            instance_double(Versionify::VersionBumper::MinorVersionBumper, bump: true)
+          end
+
+          it 'should use a MinorVersionBumper' do
+            expect(Versionify::VersionBumper::MinorVersionBumper)
+              .to receive(:new)
+              .with(FileUtils.pwd)
+              .and_return(bumper)
+            expect(bumper).to receive(:bump)
+
+            subject.bump(type)
+          end
+        end
+
         context 'when the type is MAJOR' do
           let(:type) { 'MAJOR' }
           let(:bumper) { instance_double(Versionify::VersionBumper::MajorVersionBumper, bump: true) }
