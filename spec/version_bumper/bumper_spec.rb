@@ -5,7 +5,8 @@ describe Versionify::VersionBumper::Bumper do
   describe '.new' do
     context 'when the path given is not a repo' do
       it 'should raise an exception' do
-        expect { described_class.new('') }.to raise_error(Versionify::NotRepositoryError)
+        expect { described_class.new('') }
+          .to raise_error(Versionify::Errors::NotRepositoryError)
       end
     end
   end

@@ -1,8 +1,6 @@
 require 'thor'
 
 module Versionify
-  class NotRepositoryError < StandardError; end
-
   class CLI < Thor
     SUCCESS_EXIT_STATUS = 0
     ERROR_EXIT_STATUS = 1
@@ -18,8 +16,6 @@ module Versionify
       PATCH_VERSION_TYPE
     ]
 
-    class InvalidVersionBumpType < StandardError; end
-
     desc(
       'bump TYPE',
       'Bump the version of you application.' \
@@ -30,10 +26,10 @@ module Versionify
       bumper.bump
       # add logic to check for accepted versions here
       SUCCESS_EXIT_STATUS
-    rescue NotRepositoryError
+    rescue Errors::NotRepositoryError
       $stderr.puts 'Error: Directory is not a repository'
       ERROR_EXIT_STATUS
-    rescue InvalidVersionBumpType
+    rescue Errors::InvalidVersionBumpType
       $stderr.puts 'Error: Invalid TYPE for version bump.' \
         " TYPE must be one of #{VALID_BUMP_TYPES.join(', ')}"
       ERROR_EXIT_STATUS
@@ -50,7 +46,7 @@ module Versionify
       when PATCH_VERSION_TYPE
         Versionify::VersionBumper::PatchVersionBumper.new(FileUtils.pwd)
       else
-        fail InvalidVersionBumpType
+        fail Errors::InvalidVersionBumpType
       end
     end
   end

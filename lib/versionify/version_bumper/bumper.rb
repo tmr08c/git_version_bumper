@@ -50,7 +50,7 @@ module Versionify
       def git_object(path)
         Git.open(path)
       rescue ArgumentError
-        fail Versionify::NotRepositoryError
+        fail Errors::NotRepositoryError
       end
     end
   end
