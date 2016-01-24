@@ -34,7 +34,7 @@ describe Versionify::VersionBumper::MajorVersionBumper do
           subject.bump
 
           tag_list = `git tag -l`
-          expect(tag_list).to match(/1.0.0/)
+          expect(tag_list).to match(/v1.0.0/)
         end
       end
     end
@@ -47,7 +47,7 @@ def with_repo(path = 'tmp/testRepo')
   `git init`
 
   yield
-
+ensure
   FileUtils.rm_rf(path)
   FileUtils.chdir(File.realpath("#{__FILE__}/.."))
 end

@@ -24,7 +24,7 @@ module Versionify
       end
 
       def tag
-        git.add_tag('1.0.0')
+        git.add_tag('v1.0.0')
       end
 
       def git_object(path)
