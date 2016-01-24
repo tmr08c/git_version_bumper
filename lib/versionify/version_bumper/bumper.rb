@@ -35,12 +35,16 @@ module Versionify
           git.tags.last || Versionify::VersionBumper::NullTag.new
       end
 
+      def current_major_version
+        @current_major_version ||= Integer(current_version.split('.').first)
+      end
+
       def current_minor_version
         @current_minor_version ||= Integer(current_version.split('.')[1])
       end
 
-      def current_major_version
-        @current_major_version ||= Integer(current_version.split('.').first)
+      def current_patch_version
+        @current_patch_version ||= Integer(current_version.split('.').last)
       end
 
       def git_object(path)

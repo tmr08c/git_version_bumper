@@ -6,9 +6,17 @@ module Versionify
   class CLI < Thor
     SUCCESS_EXIT_STATUS = 0
     ERROR_EXIT_STATUS = 1
+
     # Version number naming shema based on Semantic Versioning
     # See http://semver.org/ for more details
-    VALID_BUMP_TYPES = %w(MAJOR MINOR PATCH)
+    MAJOR_VERSION_TYPE = 'MAJOR'.freeze
+    MINOR_VERSION_TYPE = 'MINOR'.freeze
+    PATCH_VERSION_TYPE = 'PATCH'.freeze
+    VALID_BUMP_TYPES = [
+      MAJOR_VERSION_TYPE,
+      MINOR_VERSION_TYPE,
+      PATCH_VERSION_TYPE
+    ]
 
     class InvalidVersionBumpType < StandardError; end
 
@@ -34,16 +42,15 @@ module Versionify
     private
 
     def bumper_for(version_type)
-      type = version_type.upcase
-      if VALID_BUMP_TYPES.include?(type)
-        case type
-        when 'MAJOR'
-          Versionify::VersionBumper::MajorVersionBumper.new(FileUtils.pwd)
-        when 'MINOR'
-          Versionify::VersionBumper::MinorVersionBumper.new(FileUtils.pwd)
-        end
+      case version_type.upcase
+      when MAJOR_VERSION_TYPE
+        Versionify::VersionBumper::MajorVersionBumper.new(FileUtils.pwd)
+      when MINOR_VERSION_TYPE
+        Versionify::VersionBumper::MinorVersionBumper.new(FileUtils.pwd)
+      when PATCH_VERSION_TYPE
+        Versionify::VersionBumper::PatchVersionBumper.new(FileUtils.pwd)
       else
-        raise InvalidVersionBumpType
+        fail InvalidVersionBumpType
       end
     end
   end

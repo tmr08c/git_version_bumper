@@ -25,7 +25,24 @@ describe Versionify::CLI do
       end
 
       context 'when the type is valid' do
-        context 'when the tpye is MINOR' do
+        context 'when the type is PATCH' do
+          let(:type) { 'PATCH' }
+          let(:bumper) do
+            instance_double(Versionify::VersionBumper::PatchVersionBumper, bump: true)
+          end
+
+          it 'should use a PatchVersionBumper' do
+            expect(Versionify::VersionBumper::PatchVersionBumper)
+              .to receive(:new)
+              .with(FileUtils.pwd)
+              .and_return(bumper)
+            expect(bumper).to receive(:bump)
+
+            subject.bump(type)
+          end
+        end
+
+        context 'when the type is MINOR' do
           let(:type) { 'MINOR' }
           let(:bumper) do
             instance_double(Versionify::VersionBumper::MinorVersionBumper, bump: true)
