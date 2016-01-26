@@ -8,8 +8,14 @@ Gem::Specification.new do |spec|
   spec.version       = Versionify::VERSION
   spec.authors       = ["Troy Rosenberg"]
   spec.email         = ["tmr08c@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{CLI tool to create version bump commit and tag with
+                          newest version in a Git repository.}
+  spec.description   = %q{CLI tool to create version bump commit and tag with
+                          newest version in a Git repository. Versioning is
+                          based on [Semantic Versioning](http://semver.org/).
+                          Version bump types include MAJOR, MINOR, and PATCH.
+                          Once installed gem can be used in a Git repository by
+                          running `versionify bump TYPE` }
   spec.homepage      = ""
   spec.license       = "MIT"
 
