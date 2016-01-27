@@ -1,6 +1,6 @@
 require 'thor'
 
-module Versionify
+module GitVersionBumper
   class CLI < Thor
     SUCCESS_EXIT_STATUS = 0
     ERROR_EXIT_STATUS = 1
@@ -40,11 +40,11 @@ module Versionify
     def bumper_for(version_type)
       case version_type.upcase
       when MAJOR_VERSION_TYPE
-        Versionify::VersionBumper::MajorVersionBumper.new(FileUtils.pwd)
+        GitVersionBumper::VersionBumper::MajorVersionBumper.new(FileUtils.pwd)
       when MINOR_VERSION_TYPE
-        Versionify::VersionBumper::MinorVersionBumper.new(FileUtils.pwd)
+        GitVersionBumper::VersionBumper::MinorVersionBumper.new(FileUtils.pwd)
       when PATCH_VERSION_TYPE
-        Versionify::VersionBumper::PatchVersionBumper.new(FileUtils.pwd)
+        GitVersionBumper::VersionBumper::PatchVersionBumper.new(FileUtils.pwd)
       else
         fail Errors::InvalidVersionBumpType
       end

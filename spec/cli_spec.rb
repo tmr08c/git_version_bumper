@@ -1,7 +1,7 @@
-require 'versionify'
+require 'git_version_bumper'
 require 'spec_helper'
 
-describe Versionify::CLI do
+describe GitVersionBumper::CLI do
   describe '#bump' do
     context 'when a type is not given' do
       subject { described_class.new }
@@ -28,11 +28,11 @@ describe Versionify::CLI do
         context 'when the type is PATCH' do
           let(:type) { 'PATCH' }
           let(:bumper) do
-            instance_double(Versionify::VersionBumper::PatchVersionBumper, bump: true)
+            instance_double(GitVersionBumper::VersionBumper::PatchVersionBumper, bump: true)
           end
 
           it 'should use a PatchVersionBumper' do
-            expect(Versionify::VersionBumper::PatchVersionBumper)
+            expect(GitVersionBumper::VersionBumper::PatchVersionBumper)
               .to receive(:new)
               .with(FileUtils.pwd)
               .and_return(bumper)
@@ -45,11 +45,11 @@ describe Versionify::CLI do
         context 'when the type is MINOR' do
           let(:type) { 'MINOR' }
           let(:bumper) do
-            instance_double(Versionify::VersionBumper::MinorVersionBumper, bump: true)
+            instance_double(GitVersionBumper::VersionBumper::MinorVersionBumper, bump: true)
           end
 
           it 'should use a MinorVersionBumper' do
-            expect(Versionify::VersionBumper::MinorVersionBumper)
+            expect(GitVersionBumper::VersionBumper::MinorVersionBumper)
               .to receive(:new)
               .with(FileUtils.pwd)
               .and_return(bumper)
@@ -61,10 +61,10 @@ describe Versionify::CLI do
 
         context 'when the type is MAJOR' do
           let(:type) { 'MAJOR' }
-          let(:bumper) { instance_double(Versionify::VersionBumper::MajorVersionBumper, bump: true) }
+          let(:bumper) { instance_double(GitVersionBumper::VersionBumper::MajorVersionBumper, bump: true) }
 
           it 'should user a MajorVersionBumper' do
-            expect(Versionify::VersionBumper::MajorVersionBumper)
+            expect(GitVersionBumper::VersionBumper::MajorVersionBumper)
               .to receive(:new)
               .with(FileUtils.pwd)
               .and_return(bumper)

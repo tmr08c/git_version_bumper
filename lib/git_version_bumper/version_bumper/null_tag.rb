@@ -1,4 +1,4 @@
-module Versionify
+module GitVersionBumper
   module VersionBumper
     class NullTag
       def initialize; end

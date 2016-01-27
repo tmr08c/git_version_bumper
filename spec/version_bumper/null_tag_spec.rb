@@ -1,7 +1,7 @@
 require 'spec_helper'
-require 'Versionify/version_bumper/null_tag'
+require 'git_version_bumper/version_bumper/null_tag'
 
-describe Versionify::VersionBumper::NullTag do
+describe GitVersionBumper::VersionBumper::NullTag do
   describe '#name' do
     subject { described_class.new }
 

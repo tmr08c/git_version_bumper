@@ -1,9 +1,9 @@
-require 'versionify'
-require 'versionify/version_bumper/bumper'
-require 'versionify/version_bumper/null_tag'
+require 'git_version_bumper'
+require 'git_version_bumper/version_bumper/bumper'
+require 'git_version_bumper/version_bumper/null_tag'
 require 'git'
 
-module Versionify
+module GitVersionBumper
   module VersionBumper
     class MajorVersionBumper < Bumper
 

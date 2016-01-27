@@ -1,6 +1,6 @@
-require 'versionify'
+require 'git_version_bumper'
 
-module Versionify
+module GitVersionBumper
   module VersionBumper
     class Bumper
       VERSION_BUMP_COMMIT_MESSAGE = 'Version Bump.'.freeze
@@ -32,7 +32,7 @@ module Versionify
 
       def current_tag
         @current_tag ||=
-          git.tags.last || Versionify::VersionBumper::NullTag.new
+          git.tags.last || VersionBumper::NullTag.new
       end
 
       def current_major_version

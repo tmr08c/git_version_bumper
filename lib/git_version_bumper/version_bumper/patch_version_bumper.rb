@@ -1,7 +1,7 @@
-require 'versionify'
-require 'versionify/version_bumper/bumper'
+require 'git_version_bumper'
+require 'git_version_bumper/version_bumper/bumper'
 
-module Versionify
+module GitVersionBumper
   module VersionBumper
     class PatchVersionBumper < Bumper
       private

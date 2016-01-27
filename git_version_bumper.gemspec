@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'versionify/version'
+require 'git_version_bumper/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "versionify"
-  spec.version       = Versionify::VERSION
+  spec.name          = "git_version_bumper"
+  spec.version       = GitVersionBumper::VERSION
   spec.authors       = ["Troy Rosenberg"]
   spec.email         = ["tmr08c@gmail.com"]
   spec.summary       = %q{CLI tool to create version bump commit and tag with
@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
                           Version bump types include MAJOR, MINOR, and PATCH.
                           Once installed gem can be used in a Git repository by
                           running `versionify bump TYPE` }
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/tmr08c/git_version_bumper/"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")

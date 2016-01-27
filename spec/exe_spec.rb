@@ -1,25 +1,25 @@
-require 'versionify'
+require 'git_version_bumper'
 require 'spec_helper'
 
 describe 'bundle executable' do
   it 'should use the CLI class' do
-    allow(Versionify::CLI).to receive(:start)
-    output = versionify ''
+    allow(GitVersionBumper::CLI).to receive(:start)
+    output = git_version_bumper ''
     puts output
-    expect(Versionify::CLI).to have_received(:start)
+    expect(GitVersionBumper::CLI).to have_received(:start)
   end
 
   context 'when asking for help' do
     it 'should list the bump TYPE options' do
-      expect { versionify 'help bump' }.to output(/MAJOR/).to_stdout
-      expect { versionify 'help bump' }.to output(/MINOR/).to_stdout
-      expect { versionify 'help bump' }.to output(/DOT/).to_stdout
+      expect { git_version_bumper 'help bump' }.to output(/MAJOR/).to_stdout
+      expect { git_version_bumper 'help bump' }.to output(/MINOR/).to_stdout
+      expect { git_version_bumper 'help bump' }.to output(/DOT/).to_stdout
     end
   end
 
   context 'when not passing in a type' do
     it 'should say a type is resquired' do
-      expect { versionify 'bump' }.to output(/ERROR/).to_stderr
+      expect { git_version_bumper 'bump' }.to output(/ERROR/).to_stderr
     end
   end
 
@@ -34,7 +34,7 @@ describe 'bundle executable' do
         end
 
         it 'should return an error status message' do
-          versionify 'bump'
+          git_version_bumper 'bump'
           expect($?.exitstatus).to_not be_zero
         end
       end
@@ -47,17 +47,17 @@ describe 'bundle executable' do
         end
 
         it 'should have a successful exit status' do
-          versionify 'bump'
+          git_version_bumper 'bump'
 
           expect($?.exitstatus).to be_zero
         end
 
-        let(:cli) { instance_double(Versionify::CLI.new) }
+        let(:cli) { instance_double(GitVersionBumper::CLI.new) }
 
-        it 'should pass command line arguments to the Versionify::CLI class' do
-          versionify 'fist bump'
+        it 'should pass command line arguments to the GitVersionBumper::CLI class' do
+          git_version_bumper 'fist bump'
 
-          expect(Versionify::CLI).to receive(:new).and_return(cli)
+          expect(GitVersionBumper::CLI).to receive(:new).and_return(cli)
           expect(cli).to receive(:fist).with(:bump)
         end
 
@@ -70,9 +70,9 @@ describe 'bundle executable' do
   end
 end
 
-def versionify(command)
+def git_version_bumper(command)
   path = File.realpath("#{__FILE__}/../../bin")
 
   puts path
-  output = `#{path}/versionify #{command}`
+  output = `#{path}/git_version_bumper #{command}`
 end

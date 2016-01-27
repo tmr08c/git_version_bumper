@@ -1,7 +1,7 @@
-require 'versionify/version_bumper/major_version_bumper'
+require 'git_version_bumper/version_bumper/major_version_bumper'
 require 'spec_helper'
 
-describe Versionify::VersionBumper::MajorVersionBumper do
+describe GitVersionBumper::VersionBumper::MajorVersionBumper do
   describe '.bump' do
     describe 'commit message' do
       let(:repo_path) { '/tmp/repo' }

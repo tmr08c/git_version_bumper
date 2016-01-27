@@ -2,6 +2,6 @@
 # encoding: utf-8
 # frozen_string_literal: true
 $LOAD_PATH.unshift(File.dirname(File.realpath(__FILE__)) + '/../lib')
-require 'versionify'
+require 'git_version_bumper'
 
-exit Versionify::CLI.start(ARGV)
+exit GitVersionBumper::CLI.start(ARGV)

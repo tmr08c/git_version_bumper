@@ -1,7 +1,7 @@
 require 'spec_helper'
-require 'versionify/version_bumper/minor_version_bumper'
+require 'git_version_bumper/version_bumper/minor_version_bumper'
 
-describe Versionify::VersionBumper::MinorVersionBumper do
+describe GitVersionBumper::VersionBumper::MinorVersionBumper do
   describe '#bump' do
     describe 'commit message' do
       let(:repo_path) { '/tmp/repo' }

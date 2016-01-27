@@ -1,4 +1,4 @@
-# Versionify
+# GitVersionBumper
 
 CLI tool to create version bump commit and tag witCLI tool to create version bump commit and tag with newest version in a Git repository. Versioning is based on [Semantic Versioning](http://semver.org/).  Version bump types include `MAJOR`, `MINOR`, and `PATCH`.
 
@@ -6,7 +6,7 @@ CLI tool to create version bump commit and tag witCLI tool to create version bum
 
 Add this line to your application's Gemfile:
 
-    gem 'versionify'
+    gem 'git_version_bumper'
 
 And then execute:
 
@@ -14,7 +14,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install versionify
+    $ gem install git_version_bumper
 
 ## Usage
 
@@ -34,7 +34,7 @@ Valid version bump types include:
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/versionify/fork )
+1. Fork it ( https://github.com/tmr08c/git_version_bumper/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
