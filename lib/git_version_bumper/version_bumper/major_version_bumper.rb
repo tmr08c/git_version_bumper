@@ -6,7 +6,6 @@ require 'git'
 module GitVersionBumper
   module VersionBumper
     class MajorVersionBumper < Bumper
-
       private
 
       def tag
