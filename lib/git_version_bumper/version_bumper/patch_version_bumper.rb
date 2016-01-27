@@ -8,7 +8,9 @@ module GitVersionBumper
 
       def tag
         git.add_tag(
-          "v#{current_major_version}.#{current_minor_version}.#{current_patch_version + 1}"
+          "v#{current_major_version}." \
+          "#{current_minor_version}." \
+          "#{current_patch_version + 1}"
         )
       end
     end
