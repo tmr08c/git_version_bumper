@@ -50,7 +50,7 @@ module GitVersionBumper
       def git_object(path)
         Git.open(path)
       rescue ArgumentError
-        fail Errors::NotRepositoryError
+        raise Errors::NotRepositoryError
       end
     end
   end
