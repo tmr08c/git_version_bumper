@@ -2,6 +2,7 @@ require 'git_version_bumper/version_bumper/bumper'
 
 module GitVersionBumper
   module VersionBumper
+    # Implementation of Bumper that increases the minor version number.
     class MinorVersionBumper < Bumper
       private
 
