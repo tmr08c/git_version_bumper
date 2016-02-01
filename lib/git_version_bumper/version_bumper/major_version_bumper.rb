@@ -5,6 +5,7 @@ require 'git'
 
 module GitVersionBumper
   module VersionBumper
+    # Implementation of Bumper that increases the major version number.
     class MajorVersionBumper < Bumper
       private
 
