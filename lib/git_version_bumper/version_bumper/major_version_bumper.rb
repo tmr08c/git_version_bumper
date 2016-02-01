@@ -1,12 +1,9 @@
-require 'git_version_bumper'
 require 'git_version_bumper/version_bumper/bumper'
-require 'git_version_bumper/version_bumper/null_tag'
-require 'git'
 
 module GitVersionBumper
   module VersionBumper
+    # Implementation of Bumper that increases the major version number.
     class MajorVersionBumper < Bumper
-
       private
 
       def tag

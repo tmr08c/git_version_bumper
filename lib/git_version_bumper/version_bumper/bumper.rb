@@ -1,7 +1,14 @@
 require 'git_version_bumper'
+require 'git_version_bumper/version_bumper/null_tag'
+require 'git'
 
 module GitVersionBumper
   module VersionBumper
+    # Parent class used for housing logic on how to handle increasing version
+    # number. This includes creating and tagging a version bump commit.
+    #
+    # This should be inheirted from to implement the logic for creating the
+    # `tag` associated with the new version.
     class Bumper
       VERSION_BUMP_COMMIT_MESSAGE = 'Version Bump.'.freeze
 
@@ -50,7 +57,7 @@ module GitVersionBumper
       def git_object(path)
         Git.open(path)
       rescue ArgumentError
-        fail Errors::NotRepositoryError
+        raise Errors::NotRepositoryError
       end
     end
   end

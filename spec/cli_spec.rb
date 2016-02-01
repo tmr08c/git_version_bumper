@@ -7,7 +7,7 @@ describe GitVersionBumper::CLI do
       subject { described_class.new }
 
       it 'should error' do
-        expect{ subject.bump }.to raise_error(ArgumentError)
+        expect { subject.bump }.to raise_error(ArgumentError)
       end
     end
 
@@ -28,7 +28,10 @@ describe GitVersionBumper::CLI do
         context 'when the type is PATCH' do
           let(:type) { 'PATCH' }
           let(:bumper) do
-            instance_double(GitVersionBumper::VersionBumper::PatchVersionBumper, bump: true)
+            instance_double(
+              GitVersionBumper::VersionBumper::PatchVersionBumper,
+              bump: true
+            )
           end
 
           it 'should use a PatchVersionBumper' do
@@ -45,7 +48,10 @@ describe GitVersionBumper::CLI do
         context 'when the type is MINOR' do
           let(:type) { 'MINOR' }
           let(:bumper) do
-            instance_double(GitVersionBumper::VersionBumper::MinorVersionBumper, bump: true)
+            instance_double(
+              GitVersionBumper::VersionBumper::MinorVersionBumper,
+              bump: true
+            )
           end
 
           it 'should use a MinorVersionBumper' do
@@ -61,7 +67,12 @@ describe GitVersionBumper::CLI do
 
         context 'when the type is MAJOR' do
           let(:type) { 'MAJOR' }
-          let(:bumper) { instance_double(GitVersionBumper::VersionBumper::MajorVersionBumper, bump: true) }
+          let(:bumper) do
+            instance_double(
+              GitVersionBumper::VersionBumper::MajorVersionBumper,
+              bump: true
+            )
+          end
 
           it 'should user a MajorVersionBumper' do
             expect(GitVersionBumper::VersionBumper::MajorVersionBumper)
@@ -106,21 +117,15 @@ describe GitVersionBumper::CLI do
       subject { described_class.new }
       let(:bumper) { double('bumper', bump: true) }
 
-      before do
-        path = '/tmp/testRepo'
-        FileUtils.mkdir_p(path)
-        FileUtils.chdir(path)
-        %x(git init)
-      end
-
       it 'should return a successful exit status' do
-        expect(subject).to receive(:bumper_for).with('MAJOR').and_return(bumper)
+        with_repo do
+          expect(subject)
+            .to receive(:bumper_for)
+            .with('MAJOR')
+            .and_return(bumper)
 
-        expect(subject.bump('MAJOR')).to eq 0
-      end
-
-      after do
-        FileUtils.chdir(File.realpath("#{__FILE__}/.."))
+          expect(subject.bump('MAJOR')).to eq 0
+        end
       end
     end
   end
