@@ -1,5 +1,6 @@
 module GitVersionBumper
   module VersionBumper
+    # Null Object represenation of Git::Object::Tag
     class NullTag
       def initialize; end
 
