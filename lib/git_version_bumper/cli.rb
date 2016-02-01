@@ -1,6 +1,8 @@
 require 'thor'
 
 module GitVersionBumper
+  # Handles logic associated with command line interface.
+  # Uses Thor to make interaction more pleasant.
   class CLI < Thor
     SUCCESS_EXIT_STATUS = 0
     ERROR_EXIT_STATUS = 1
@@ -14,7 +16,7 @@ module GitVersionBumper
       MAJOR_VERSION_TYPE,
       MINOR_VERSION_TYPE,
       PATCH_VERSION_TYPE
-    ]
+    ].freeze
 
     desc(
       'bump TYPE',
