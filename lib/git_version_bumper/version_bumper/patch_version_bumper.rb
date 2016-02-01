@@ -1,4 +1,3 @@
-require 'git_version_bumper'
 require 'git_version_bumper/version_bumper/bumper'
 
 module GitVersionBumper

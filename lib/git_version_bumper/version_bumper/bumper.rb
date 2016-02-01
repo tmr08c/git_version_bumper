@@ -1,4 +1,6 @@
 require 'git_version_bumper'
+require 'git_version_bumper/version_bumper/null_tag'
+require 'git'
 
 module GitVersionBumper
   module VersionBumper
