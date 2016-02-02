@@ -25,3 +25,6 @@ install:
   - bundle install --retry=3
 script:
   - bundle exec rspec
+addons:
+  code_climate:
+    repo_token: d946fbe840359053ee5604eb18d4cd53c9da50bb2e6af66191385e49962be152
