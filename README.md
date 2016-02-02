@@ -1,3 +1,7 @@
+[![Code Climate](https://codeclimate.com/github/tmr08c/git_version_bumper/badges/gpa.svg)](https://codeclimate.com/github/tmr08c/git_version_bumper)
+[![Test Coverage](https://codeclimate.com/github/tmr08c/git_version_bumper/badges/coverage.svg)](https://codeclimate.com/github/tmr08c/git_version_bumper/coverage)
+[![Build Status](https://travis-ci.org/tmr08c/git_version_bumper.svg?branch=master)](https://travis-ci.org/tmr08c/git_version_bumper)
+
 # GitVersionBumper
 
 CLI tool to create version bump commit and tag witCLI tool to create version bump commit and tag with newest version in a Git repository. Versioning is based on [Semantic Versioning](http://semver.org/).  Version bump types include `MAJOR`, `MINOR`, and `PATCH`.
