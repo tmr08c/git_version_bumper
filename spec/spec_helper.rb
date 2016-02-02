@@ -102,7 +102,13 @@ RSpec.configure do |config|
   def with_repo(path = 'tmp/testRepo')
     FileUtils.mkdir_p(path)
     FileUtils.chdir(path)
+
+    # Make directory a repository
     `git init`
+
+    # Set up config for repository
+    `git config user.name "GitVersionBumper"`
+    `git config user.email "gitversionbumper@example.com"`
 
     yield
   ensure
