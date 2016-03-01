@@ -4,7 +4,7 @@
 
 # GitVersionBumper
 
-CLI tool to create version bump commit and tag witCLI tool to create version bump commit and tag with newest version in a Git repository. Versioning is based on [Semantic Versioning](http://semver.org/).  Version bump types include `MAJOR`, `MINOR`, and `PATCH`.
+CLI tool to create version bump commit and tag with newest version in a Git repository. Versioning is based on [Semantic Versioning](http://semver.org/).  Version bump types include `MAJOR`, `MINOR`, and `PATCH`.
 
 ## Installation
 
