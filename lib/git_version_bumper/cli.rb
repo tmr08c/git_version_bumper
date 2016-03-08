@@ -42,11 +42,11 @@ module GitVersionBumper
     def bumper_for(version_type)
       case version_type.upcase
       when MAJOR_VERSION_TYPE
-        GitVersionBumper::VersionBumper::MajorVersionBumper.new(FileUtils.pwd)
+        VersionBumper::MajorVersionBumper.new(FileUtils.pwd)
       when MINOR_VERSION_TYPE
-        GitVersionBumper::VersionBumper::MinorVersionBumper.new(FileUtils.pwd)
+        VersionBumper::MinorVersionBumper.new(FileUtils.pwd)
       when PATCH_VERSION_TYPE
-        GitVersionBumper::VersionBumper::PatchVersionBumper.new(FileUtils.pwd)
+        VersionBumper::PatchVersionBumper.new(FileUtils.pwd)
       else
         fail Errors::InvalidVersionBumpType
       end
