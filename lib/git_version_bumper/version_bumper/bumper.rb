@@ -19,7 +19,6 @@ module GitVersionBumper
       def bump
         commit
         tag
-        update_file(project_type)
       end
 
       private

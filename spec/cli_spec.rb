@@ -2,11 +2,6 @@ require 'git_version_bumper'
 require 'spec_helper'
 
 describe GitVersionBumper::CLI do
-  before do
-    allow($stdout).to receive(:puts)
-    allow($stderr).to receive(:puts)
-  end
-
   describe '#bump' do
     context 'when a type is not given' do
       subject { described_class.new }

@@ -24,13 +24,8 @@ module GitVersionBumper
       'Where TYPE can be MAJOR, MINOR, or PATC'
     )
     def bump(version_type)
-      version = VersionFinder
       bumper = bumper_for(version_type)
       bumper.bump
-
-      GitTagManger.add_tag(new_version)
-      # ProjectType || UnknownProjectType(file_path: path_to_file)
-      VersionFileWriter.write_out_version(new_version)
       # add logic to check for accepted versions here
       SUCCESS_EXIT_STATUS
     rescue Errors::NotRepositoryError
