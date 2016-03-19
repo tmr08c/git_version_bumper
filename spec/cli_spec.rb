@@ -93,7 +93,7 @@ describe GitVersionBumper::CLI do
       end
     end
 
-    context "when the directory isn't a repositroy" do
+    context "when the directory isn't a repository" do
       subject { described_class.new }
 
       before do
