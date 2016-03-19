@@ -84,12 +84,6 @@ describe GitVersionBumper::CLI do
             subject.bump(type)
           end
         end
-
-        context 'when the type is MINOR' do
-        end
-
-        context 'when the type is PATCH' do
-        end
       end
     end
 
