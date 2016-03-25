@@ -122,5 +122,21 @@ describe GitVersionBumper::CLI do
         end
       end
     end
+
+    describe 'optional parmeters' do
+      describe '--file_paths' do
+        it 'should be optional' do
+          bumper = instance_double(GitVersionBumper::Bumper, bump: true)
+
+          expect { subject.bump('BUMP_TYPE', bumper) }.to eq 1
+        end
+
+        it 'should allow for a single file path to be passed in' do
+        end
+
+        it 'should allow for multiple file paths to be passed in' do
+        end
+      end
+    end
   end
 end
