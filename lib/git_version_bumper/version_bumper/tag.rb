@@ -1,5 +1,3 @@
-require 'git_version_bumper/version_bumper/null_tag'
-
 module GitVersionBumper
   module VersionBumper
     # Local represenation of Git::Object::Tag
@@ -17,7 +15,7 @@ module GitVersionBumper
 
       def self.current(git_object)
         tags = git_object.tags
-        return NullTag.new if tags.empty?
+        return Tag.new(0, 0, 0) if tags.empty?
 
         tags
           .map { |tag| Tag.from_name(tag.name) }
