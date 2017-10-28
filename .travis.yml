@@ -1,3 +1,6 @@
+env:
+  global:
+    - CC_TEST_REPORTER_ID=d946fbe840359053ee5604eb18d4cd53c9da50bb2e6af66191385e49962be152
 sudo: false
 cache: bundler
 language: ruby
@@ -23,8 +26,11 @@ matrix:
 before_install: gem update --remote bundler
 install:
   - bundle install --retry=3
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 script:
   - bundle exec rspec
-addons:
-  code_climate:
-    repo_token: d946fbe840359053ee5604eb18d4cd53c9da50bb2e6af66191385e49962be152
+after_script:
+  - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT; fi
