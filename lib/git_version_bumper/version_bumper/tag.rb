@@ -30,7 +30,7 @@ module GitVersionBumper
         Tag.new(major, minor, patch)
       end
 
-      def name
+      def to_s
         "v#{major}.#{minor}.#{patch}"
       end
 

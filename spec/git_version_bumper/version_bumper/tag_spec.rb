@@ -10,7 +10,7 @@ describe GitVersionBumper::VersionBumper::Tag do
           git_object = Git.open('./')
           current_tag = described_class.current(git_object)
 
-          expect(current_tag.name).to eq 'v0.0.0'
+          expect(current_tag.to_s).to eq 'v0.0.0'
         end
       end
     end
@@ -24,7 +24,7 @@ describe GitVersionBumper::VersionBumper::Tag do
 
             current_tag = described_class.current(git_object)
 
-            expect(current_tag.name).to eq 'v1.0.0'
+            expect(current_tag.to_s).to eq 'v1.0.0'
           end
         end
       end
@@ -40,7 +40,7 @@ describe GitVersionBumper::VersionBumper::Tag do
 
             current_tag = described_class.current(git_object)
 
-            expect(current_tag.name).to eq 'v0.0.11'
+            expect(current_tag.to_s).to eq 'v0.0.11'
           end
         end
       end
@@ -119,14 +119,6 @@ describe GitVersionBumper::VersionBumper::Tag do
         expect(described_class.new(2, 3, 4) == described_class.new(1, 2, 3))
           .to be_falsey
       end
-    end
-  end
-
-  describe '#name' do
-    it 'combines versions into a string' do
-      tag = described_class.new(1, 2, 3)
-
-      expect(tag.name).to eq 'v1.2.3'
     end
   end
 
