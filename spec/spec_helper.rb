@@ -119,7 +119,7 @@ RSpec.configure do |config|
 
     yield
   ensure
-    FileUtils.rm_rf(path)
     FileUtils.chdir(File.realpath("#{__FILE__}/../../"))
+    FileUtils.rm_rf(path)
   end
 end

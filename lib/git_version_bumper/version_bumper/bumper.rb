@@ -1,5 +1,5 @@
 require 'git_version_bumper'
-require 'git_version_bumper/version_bumper/null_tag'
+require 'git_version_bumper/version_bumper/tag'
 require 'git'
 
 module GitVersionBumper
@@ -33,25 +33,20 @@ module GitVersionBumper
         fail NotImplementedError
       end
 
-      def current_version
-        @current_version ||= current_tag.name.sub('v', '')
-      end
-
       def current_tag
-        @current_tag ||=
-          git.tags.last || VersionBumper::NullTag.new
+        @current_tag ||= Tag.current(git)
       end
 
       def current_major_version
-        @current_major_version ||= Integer(current_version.split('.').first)
+        @current_major_version ||= current_tag.major
       end
 
       def current_minor_version
-        @current_minor_version ||= Integer(current_version.split('.')[1])
+        @current_minor_version ||= current_tag.minor
       end
 
       def current_patch_version
-        @current_patch_version ||= Integer(current_version.split('.').last)
+        @current_patch_version ||= current_tag.patch
       end
 
       def git_object(path)
