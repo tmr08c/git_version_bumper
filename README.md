@@ -1,6 +1,8 @@
+[![Gem Version](https://badge.fury.io/rb/git_version_bumper.svg)](https://badge.fury.io/rb/git_version_bumper)
 [![Code Climate](https://codeclimate.com/github/tmr08c/git_version_bumper/badges/gpa.svg)](https://codeclimate.com/github/tmr08c/git_version_bumper)
 [![Test Coverage](https://codeclimate.com/github/tmr08c/git_version_bumper/badges/coverage.svg)](https://codeclimate.com/github/tmr08c/git_version_bumper/coverage)
 [![Build Status](https://travis-ci.org/tmr08c/git_version_bumper.svg?branch=master)](https://travis-ci.org/tmr08c/git_version_bumper)
+
 
 # GitVersionBumper
 
