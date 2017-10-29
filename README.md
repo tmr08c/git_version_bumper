@@ -22,7 +22,7 @@ Or install it yourself as:
 
 ## Usage
 
-From within your Git repository you can run the gem using the `versionify`'s `bump` command in combination with a valid version bump type.
+From within your Git repository you can run the gem using the `versionify bump` command, in combination with a valid version bump type.
 
 ```
 versionify bump TYPE
