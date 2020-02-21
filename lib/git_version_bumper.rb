@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'git_version_bumper/version'
 require 'git_version_bumper/errors'
 require 'git_version_bumper/cli'

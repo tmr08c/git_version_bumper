@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'thor'
 
 module GitVersionBumper
@@ -9,9 +11,9 @@ module GitVersionBumper
 
     # Version number naming shema based on Semantic Versioning
     # See http://semver.org/ for more details
-    MAJOR_VERSION_TYPE = 'MAJOR'.freeze
-    MINOR_VERSION_TYPE = 'MINOR'.freeze
-    PATCH_VERSION_TYPE = 'PATCH'.freeze
+    MAJOR_VERSION_TYPE = 'MAJOR'
+    MINOR_VERSION_TYPE = 'MINOR'
+    PATCH_VERSION_TYPE = 'PATCH'
     VALID_BUMP_TYPES = [
       MAJOR_VERSION_TYPE,
       MINOR_VERSION_TYPE,
@@ -29,10 +31,10 @@ module GitVersionBumper
       # add logic to check for accepted versions here
       SUCCESS_EXIT_STATUS
     rescue Errors::NotRepositoryError
-      $stderr.puts 'Error: Directory is not a repository'
+      warn 'Error: Directory is not a repository'
       ERROR_EXIT_STATUS
     rescue Errors::InvalidVersionBumpType
-      $stderr.puts 'Error: Invalid TYPE for version bump.' \
+      warn 'Error: Invalid TYPE for version bump.' \
         " TYPE must be one of #{VALID_BUMP_TYPES.join(', ')}"
       ERROR_EXIT_STATUS
     end
@@ -48,7 +50,7 @@ module GitVersionBumper
       when PATCH_VERSION_TYPE
         VersionBumper::PatchVersionBumper.new(FileUtils.pwd)
       else
-        fail Errors::InvalidVersionBumpType
+        raise Errors::InvalidVersionBumpType
       end
     end
   end

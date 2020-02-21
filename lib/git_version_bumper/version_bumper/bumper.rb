@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'git_version_bumper'
 require 'git_version_bumper/version_bumper/tag'
 require 'git'
@@ -10,7 +12,7 @@ module GitVersionBumper
     # This should be inheirted from to implement the logic for creating the
     # `tag` associated with the new version.
     class Bumper
-      VERSION_BUMP_COMMIT_MESSAGE = 'Version Bump.'.freeze
+      VERSION_BUMP_COMMIT_MESSAGE = 'Version Bump.'
 
       def initialize(path)
         @git = git_object(path)
@@ -30,7 +32,7 @@ module GitVersionBumper
       end
 
       def tag
-        fail NotImplementedError
+        raise NotImplementedError
       end
 
       def current_tag

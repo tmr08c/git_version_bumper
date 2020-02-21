@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'git'
 require 'git_version_bumper/version_bumper/tag'

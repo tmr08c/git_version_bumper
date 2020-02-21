@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
-# encoding: utf-8
 # frozen_string_literal: true
-$LOAD_PATH.unshift(File.dirname(File.realpath(__FILE__)) + '/../lib')
+
+$LOAD_PATH.unshift(__dir__ + '/../lib')
 require 'git_version_bumper'
 
 exit GitVersionBumper::CLI.start(ARGV)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Based on Rubocop
 # https://github.com/bbatsov/rubocop/blob/master/spec/support/coverage.rb
 if ENV['TRAVIS']

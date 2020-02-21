@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'git_version_bumper/version_bumper/patch_version_bumper'
 

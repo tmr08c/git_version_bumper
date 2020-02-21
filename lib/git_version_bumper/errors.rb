@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module GitVersionBumper
   # Base error class
   # GitVersionBumper-specific exceptions should inherit from this class

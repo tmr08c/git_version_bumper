@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module GitVersionBumper
   module VersionBumper
     # Local represenation of Git::Object::Tag
@@ -19,8 +21,7 @@ module GitVersionBumper
 
         tags
           .map { |tag| Tag.from_name(tag.name) }
-          .sort
-          .last
+          .max
       end
 
       def self.from_name(tag_name)
